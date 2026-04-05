@@ -60,7 +60,7 @@ const Index = () => {
               <div className="text-accent font-mono text-2xl hidden md:block">→</div>
               <div className="flex flex-col items-center gap-3 p-6 rounded-2xl border border-border bg-background/50">
                 <span className="text-accent font-mono text-3xl font-bold">03</span>
-                <span className="text-foreground font-mono text-sm text-center">Получите готовую модель за 40 минут</span>
+                <span className="text-foreground font-mono text-sm text-center">Получите готовую модель за 3 минуты</span>
               </div>
             </div>
 
