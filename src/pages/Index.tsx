@@ -5,6 +5,7 @@ import RotatingTextAccent from "@/components/RotatingTextAccent"
 import Footer from "@/components/Footer"
 import HeroTextOverlay from "@/components/HeroTextOverlay"
 import LeadModal from "@/components/LeadModal"
+import PricingSection from "@/components/PricingSection"
 
 const CDN_BASE = "https://cdn.poehali.dev/templates/meet-jack"
 
@@ -148,6 +149,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <PricingSection onOpenModal={() => setModalOpen(true)} />
       </div>
 
       <Footer />
