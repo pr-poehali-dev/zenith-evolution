@@ -106,7 +106,7 @@ const Index = () => {
                 <p className="text-accent font-mono text-xs mb-2">Промпт</p>
                 <p className="text-foreground font-mono text-sm leading-relaxed">«Синяя ядовитая лягушка, сидящая на кувшинке»</p>
                 <div className="flex items-center gap-2 mt-4">
-                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">40 мин</span>
+                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">3 мин</span>
                   <span className="bg-border/50 text-muted-foreground font-mono text-xs px-3 py-1 rounded-full">с текстурой</span>
                 </div>
               </div>
@@ -124,7 +124,7 @@ const Index = () => {
                 <p className="text-accent font-mono text-xs mb-2">Промпт</p>
                 <p className="text-foreground font-mono text-sm leading-relaxed">«Светящийся магический кристальный дракон»</p>
                 <div className="flex items-center gap-2 mt-4">
-                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">38 мин</span>
+                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">3 мин</span>
                   <span className="bg-border/50 text-muted-foreground font-mono text-xs px-3 py-1 rounded-full">с текстурой</span>
                 </div>
               </div>
@@ -142,7 +142,7 @@ const Index = () => {
                 <p className="text-accent font-mono text-xs mb-2">Промпт</p>
                 <p className="text-foreground font-mono text-sm leading-relaxed">«Футуристический космический истребитель»</p>
                 <div className="flex items-center gap-2 mt-4">
-                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">42 мин</span>
+                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">3 мин</span>
                   <span className="bg-border/50 text-muted-foreground font-mono text-xs px-3 py-1 rounded-full">с текстурой</span>
                 </div>
               </div>
