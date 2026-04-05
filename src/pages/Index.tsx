@@ -76,7 +76,75 @@ const Index = () => {
             </div>
           </div>
         </section>
+        <section className="mt-8 mb-0 mx-4 md:mx-0 px-6 md:px-12 py-14">
+          <div className="flex items-center justify-between mb-10">
+            <h2
+              className="text-foreground text-3xl md:text-4xl font-semibold"
+              style={{ fontFamily: "var(--font-montserrat)" }}
+            >
+              Примеры генерации
+            </h2>
+            <span className="text-muted-foreground font-mono text-sm hidden md:block">text → 3D model</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="group rounded-3xl overflow-hidden border border-border bg-card hover:border-primary/50 transition-all duration-300">
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src="https://cdn.poehali.dev/projects/b2ec5216-1152-44ec-a817-0a9f4cf587b0/files/0a9d00ea-e3ab-4b8f-beea-f04c709894fe.jpg"
+                  alt="Синяя ядовитая лягушка"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-5">
+                <p className="text-accent font-mono text-xs mb-2">Промпт</p>
+                <p className="text-foreground font-mono text-sm leading-relaxed">«Синяя ядовитая лягушка, сидящая на кувшинке»</p>
+                <div className="flex items-center gap-2 mt-4">
+                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">40 мин</span>
+                  <span className="bg-border/50 text-muted-foreground font-mono text-xs px-3 py-1 rounded-full">с текстурой</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="group rounded-3xl overflow-hidden border border-border bg-card hover:border-primary/50 transition-all duration-300">
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src="https://cdn.poehali.dev/projects/b2ec5216-1152-44ec-a817-0a9f4cf587b0/files/6eed9c66-1e1e-4b34-b220-b4315776ca1f.jpg"
+                  alt="Магический дракон"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-5">
+                <p className="text-accent font-mono text-xs mb-2">Промпт</p>
+                <p className="text-foreground font-mono text-sm leading-relaxed">«Светящийся магический кристальный дракон»</p>
+                <div className="flex items-center gap-2 mt-4">
+                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">38 мин</span>
+                  <span className="bg-border/50 text-muted-foreground font-mono text-xs px-3 py-1 rounded-full">с текстурой</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="group rounded-3xl overflow-hidden border border-border bg-card hover:border-primary/50 transition-all duration-300">
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src="https://cdn.poehali.dev/projects/b2ec5216-1152-44ec-a817-0a9f4cf587b0/files/a872ab42-fcf0-4d2d-a2e5-75a1356972ee.jpg"
+                  alt="Космический истребитель"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-5">
+                <p className="text-accent font-mono text-xs mb-2">Промпт</p>
+                <p className="text-foreground font-mono text-sm leading-relaxed">«Футуристический космический истребитель»</p>
+                <div className="flex items-center gap-2 mt-4">
+                  <span className="bg-primary/10 border border-primary/20 text-primary font-mono text-xs px-3 py-1 rounded-full">42 мин</span>
+                  <span className="bg-border/50 text-muted-foreground font-mono text-xs px-3 py-1 rounded-full">с текстурой</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
+
       <Footer />
     </div>
   )
