@@ -1,6 +1,35 @@
+import { useState } from "react"
+import Icon from "@/components/ui/icon"
+
 const CDN_BASE = "https://cdn.poehali.dev/templates/meet-jack"
+const SUBMIT_URL = "https://functions.poehali.dev/79f63abd-0319-4f5d-9c65-d56037b228ce"
 
 export default function Footer() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("loading")
+    try {
+      const res = await fetch(SUBMIT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email }),
+      })
+      if (res.ok) {
+        setStatus("success")
+        setName("")
+        setEmail("")
+      } else {
+        setStatus("error")
+      }
+    } catch {
+      setStatus("error")
+    }
+  }
+
   return (
     <footer className="w-full px-6 relative py-[0] mt-28 h-auto mb-0 bg-card">
       <div className="absolute top-8 right-6 text-accent text-2xl">+</div>
@@ -35,7 +64,7 @@ export default function Footer() {
             <div className="relative">
               <img
                 src={`${CDN_BASE}/jack-footer-ufo-new.png`}
-                alt="Макс в НЛО"
+                alt="Magic3D"
                 width={400}
                 height={300}
                 className="object-contain mb-0 mt-4"
@@ -48,7 +77,7 @@ export default function Footer() {
           <div className="relative">
             <img
               src={`${CDN_BASE}/jack-footer-ufo-new.png`}
-              alt="Макс в НЛО"
+              alt="Magic3D"
               width={500}
               height={375}
               className="object-contain"
@@ -56,29 +85,50 @@ export default function Footer() {
           </div>
         </div>
 
-        <div id="contact" className="w-full px-6 py-16 flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 md:gap-0 border-t border-border mt-16">
-          <div className="flex flex-col md:flex-row gap-2 text-center md:text-left">
-            <h2 className="text-foreground font-mono text-xl font-bold">Попробуй Magic3D!</h2>
-            <p className="text-foreground font-mono font-normal text-base">Генерируй 3D-модели по описанию за 40 минут</p>
-          </div>
+        <div id="contact" className="w-full px-6 py-16 border-t border-border mt-16">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-10">
+            <div className="flex flex-col gap-2 max-w-sm">
+              <h2 className="text-foreground font-mono text-xl font-bold">Попробуй Magic3D!</h2>
+              <p className="text-muted-foreground font-mono text-sm">Оставь заявку — мы свяжемся и дадим ранний доступ к платформе.</p>
+            </div>
 
-          <a href="mailto:hello@example.com">
-            <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg whitespace-nowrap hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300 font-mono flex items-center gap-2">
-              Начать бесплатно
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M7 7h10v10M7 17L17 7" />
-              </svg>
-            </button>
-          </a>
+            {status === "success" ? (
+              <div className="flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-2xl px-6 py-4 flex-1 max-w-md">
+                <Icon name="CheckCircle" size={20} className="text-accent" />
+                <p className="text-foreground font-mono text-sm">Заявка принята! Мы скоро свяжемся с вами.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3 flex-1 max-w-md w-full">
+                <input
+                  type="text"
+                  placeholder="Ваше имя"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="bg-background border border-border rounded-xl px-4 py-3 text-foreground font-mono text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-background border border-border rounded-xl px-4 py-3 text-foreground font-mono text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                />
+                {status === "error" && (
+                  <p className="text-red-400 font-mono text-xs">Что-то пошло не так. Попробуйте ещё раз.</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-base whitespace-nowrap hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300 font-mono flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {status === "loading" ? "Отправляем..." : "Оставить заявку"}
+                  {status !== "loading" && <Icon name="ArrowUpRight" size={18} />}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
 
         <div className="w-full px-6 py-4 border-t border-border flex md:flex-row items-center justify-between gap-2 flex-row">

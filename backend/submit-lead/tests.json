@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Submit valid lead",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Тест Тестов", "email": "test@example.com"},
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Submit empty lead",
+      "method": "POST",
+      "path": "/",
+      "body": {},
+      "expectedStatus": 400,
+      "expectedBody": {"error": "Имя и email обязательны"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
