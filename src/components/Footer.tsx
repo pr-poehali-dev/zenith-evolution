@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
 const CDN_BASE = "https://cdn.poehali.dev/templates/meet-jack"
@@ -133,7 +134,10 @@ export default function Footer() {
 
         <div className="w-full px-6 py-4 border-t border-border flex md:flex-row items-center justify-between gap-2 flex-row">
           <p className="text-muted-foreground text-sm font-mono">2025 Magic3D</p>
-          <p className="text-muted-foreground text-sm font-mono">poehali.dev</p>
+          <div className="flex items-center gap-4">
+            <Link to="/privacy" className="text-muted-foreground hover:text-foreground text-sm font-mono transition-colors">Конфиденциальность</Link>
+            <Link to="/terms" className="text-muted-foreground hover:text-foreground text-sm font-mono transition-colors">Условия</Link>
+          </div>
         </div>
       </div>
     </footer>
