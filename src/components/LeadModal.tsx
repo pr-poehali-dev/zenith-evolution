@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Icon from "@/components/ui/icon"
 
 const SUBMIT_URL = "https://functions.poehali.dev/79f63abd-0319-4f5d-9c65-d56037b228ce"
@@ -11,31 +11,67 @@ interface LeadModalProps {
 export default function LeadModal({ open, onClose }: LeadModalProps) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [image, setImage] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden"
     } else {
       document.body.style.overflow = ""
-      setTimeout(() => setStatus("idle"), 300)
+      setTimeout(() => {
+        setStatus("idle")
+        setImage(null)
+        setImagePreview(null)
+      }, 300)
     }
     return () => { document.body.style.overflow = "" }
   }, [open])
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setImage(file)
+    const reader = new FileReader()
+    reader.onload = (ev) => setImagePreview(ev.target?.result as string)
+    reader.readAsDataURL(file)
+  }
+
+  const handleRemoveImage = () => {
+    setImage(null)
+    setImagePreview(null)
+    if (fileInputRef.current) fileInputRef.current.value = ""
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("loading")
     try {
+      let imageBase64: string | null = null
+      let imageName: string | null = null
+
+      if (image) {
+        const reader = new FileReader()
+        imageBase64 = await new Promise((resolve) => {
+          reader.onload = (ev) => resolve((ev.target?.result as string).split(",")[1])
+          reader.readAsDataURL(image)
+        })
+        imageName = image.name
+      }
+
       const res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, image_base64: imageBase64, image_name: imageName }),
       })
       if (res.ok) {
         setStatus("success")
         setName("")
         setEmail("")
+        setImage(null)
+        setImagePreview(null)
       } else {
         setStatus("error")
       }
@@ -122,6 +158,39 @@ export default function LeadModal({ open, onClose }: LeadModalProps) {
                 required
                 className="bg-background border border-border rounded-xl px-4 py-3 text-foreground font-mono text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
               />
+
+              <div className="flex flex-col gap-2">
+                <p className="text-muted-foreground font-mono text-xs">Загрузите изображение для генерации (необязательно)</p>
+                {imagePreview ? (
+                  <div className="relative rounded-xl overflow-hidden border border-border">
+                    <img src={imagePreview} alt="preview" className="w-full h-40 object-cover" />
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 bg-black/60 hover:bg-black/80 text-white rounded-full p-1 transition-colors"
+                    >
+                      <Icon name="X" size={14} />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex items-center gap-3 bg-background border border-dashed border-border rounded-xl px-4 py-4 text-muted-foreground font-mono text-sm hover:border-primary hover:text-primary transition-colors w-full"
+                  >
+                    <Icon name="ImagePlus" size={18} />
+                    <span>Прикрепить фото объекта</span>
+                  </button>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="hidden"
+                />
+              </div>
+
               {status === "error" && (
                 <p className="text-red-400 font-mono text-xs">Что-то пошло не так. Попробуйте ещё раз.</p>
               )}
