@@ -1,7 +1,7 @@
 const CDN_BASE = "https://cdn.poehali.dev/templates/meet-jack"
 
 export default function RotatingTextAccent() {
-  const text = "-- Поехали! Узнать больше --- "
+  const text = "-- Magic3D · AI · 3D Models · Text to 3D -- "
 
   return (
     <div className="absolute bottom-20 right-8 w-24 h-24 md:w-32 md:h-32">

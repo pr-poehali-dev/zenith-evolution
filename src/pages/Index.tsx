@@ -41,33 +41,36 @@ const Index = () => {
           </div>
 
           <div className="px-6 md:px-40">
-            <div className="flex items-center justify-center mb-3.5 md:gap-11">
-              <div className="flex flex-col items-center">
-                <img src={`${CDN_BASE}/jack-front.png`} alt="Макс спереди" className="w-48 h-48 md:w-56 md:h-56 object-contain" />
+            <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:gap-8 gap-4">
+              <div className="flex flex-col items-center gap-3 p-6 rounded-2xl border border-border bg-background/50">
+                <span className="text-accent font-mono text-3xl font-bold">01</span>
+                <span className="text-foreground font-mono text-sm text-center">Введите текстовое описание объекта</span>
               </div>
-
-              <div className="flex flex-col items-center">
-                <img src={`${CDN_BASE}/jack-side.png`} alt="Макс сбоку" className="w-48 h-48 md:w-56 md:h-56 object-contain" />
+              <div className="text-accent font-mono text-2xl hidden md:block">→</div>
+              <div className="flex flex-col items-center gap-3 p-6 rounded-2xl border border-border bg-background/50">
+                <span className="text-accent font-mono text-3xl font-bold">02</span>
+                <span className="text-foreground font-mono text-sm text-center">AI генерирует 3D-модель с текстурами</span>
               </div>
-
-              <div className="flex flex-col items-center">
-                <img src={`${CDN_BASE}/jack-back.png`} alt="Макс сзади" className="w-48 h-48 md:w-56 md:h-56 object-contain" />
+              <div className="text-accent font-mono text-2xl hidden md:block">→</div>
+              <div className="flex flex-col items-center gap-3 p-6 rounded-2xl border border-border bg-background/50">
+                <span className="text-accent font-mono text-3xl font-bold">03</span>
+                <span className="text-foreground font-mono text-sm text-center">Получите готовую модель за 40 минут</span>
               </div>
             </div>
 
             <div className="flex flex-col gap-2 max-w-5xl">
               <div className="flex items-center gap-4">
-                <span className="text-accent font-mono text-sm">Имя</span>
-                <span className="text-foreground font-mono text-sm">Макс</span>
+                <span className="text-accent font-mono text-sm">Платформа</span>
+                <span className="text-foreground font-mono text-sm">Magic3D — AI-генерация 3D-моделей</span>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-accent font-mono text-sm">Вид</span>
-                <span className="text-foreground font-mono text-sm">Инопланетянин с планеты Флэпджек</span>
+                <span className="text-accent font-mono text-sm">Пример</span>
+                <span className="text-foreground font-mono text-sm">«Синяя ядовитая лягушка, сидящая на кувшинке»</span>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-accent font-mono text-sm">Характер</span>
+                <span className="text-accent font-mono text-sm">Аудитория</span>
                 <span className="text-foreground font-mono text-sm">
-                  Любопытный, гибкий, немного расслабленный - но острый, когда дело касается баз данных и организации информации.
+                  Разработчики игр, аниматоры, создатели спецэффектов — все, кому нужны 3D-модели быстро и без сложного ПО.
                 </span>
               </div>
             </div>
